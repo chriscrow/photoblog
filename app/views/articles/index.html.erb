@@ -1,26 +1,24 @@
-<div class="container">
-    <%= link_to 'New articles', new_article_path , class: 'btn btn-default'%>
-    <% @articles.each do |article| %>
-        <div class="container section">
-            <h3 class="text-center"><%= article.title %></h3>
-            <div class="text-center subtitle">
-                <span>NOVEMBER 14, 2016</span> <span>118 views</span>
+<%= link_to 'New articles', new_article_path , class: 'btn btn-default'%>
+<% @articles.each do |article| %>
+    <div class="container section">
+        <h3 class="text-center"><%= article.title %></h3>
+        <div class="text-center subtitle">
+            <span>NOVEMBER 14, 2016</span> <span>118 views</span>
+        </div>
+        <div class="row">
+            <div class="col-md-8" style="min-height:400px">
+                <p>
+                    some img
+                </p>
             </div>
-            <div class="row">
-                <div class="col-md-8" style="min-height:400px">
-                    <p>
-                        some img
-                    </p>
-                </div>
-                <div class="col-md-4">
-                    <%= article.text %>
-                </div>
-            </div>
-            <div class="pull-right">
-                <%= link_to 'Show', article_path(article) , class: 'btn btn-default'%>
-                <%= link_to 'Edit', edit_article_path(article) , class: 'btn btn-default'%>
-                <%= link_to 'Delete', article_path(article), method: :delete, data: { confirm: 'Are you sure?' } , class: 'btn btn-default'%>
+            <div class="col-md-4">
+                <%= article.text %>
             </div>
         </div>
-    <% end %>
-</div>
+        <div class="pull-right">
+            <%= link_to 'Show', article_path(article) , class: 'btn btn-default'%>
+            <%= link_to 'Edit', edit_article_path(article) , class: 'btn btn-default'%>
+            <%= link_to 'Delete', article_path(article), method: :delete, data: { confirm: 'Are you sure?' } , class: 'btn btn-default'%>
+        </div>
+    </div>
+<% end %>
