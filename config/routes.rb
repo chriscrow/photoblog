@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   resources :users
+  resources :sessions, only: [:new, :create, :destroy]
+  
   get 'welcome/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -8,6 +10,8 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#index'
   get '/signup' => 'users#new', as: :signup
+  get '/signin' => 'sessions#new', as: :signin
+  delete '/signout' => 'sessions#destroy', as: :signout
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

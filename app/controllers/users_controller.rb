@@ -25,7 +25,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      redirect_to @user, notice: 'Welcome to the Photo Blog!'
+      flash.now[:success] = 'Welcome to the Photo Blog!'
+      redirect_to @user
     else
       render 'new'
     end
@@ -35,7 +36,8 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     if @user.update(user_params)
-      redirect_to @user, notice: 'User was successfully updated.'
+      flash.now[:success] = 'User was successfully updated.'
+      redirect_to @user
       #format.json { render :show, status: :ok, location: @user }
     else
       render :edit
