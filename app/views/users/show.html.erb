@@ -1,7 +1,7 @@
 <% provide(:title, @user.nickname) %>
 <div class="row">
+    <div id="notice" class="alert alert-success"><%= notice %></div>
     <aside class="col-md-4">
-        <p id="notice"><%= notice %></p>
 
         <%= gravatar_for @user %>
 
