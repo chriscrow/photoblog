@@ -50,6 +50,8 @@ describe "User Pages" do
       describe "after saving the user" do
         before { click_button submit }
         let(:user) { User.find_by(username: 'chrischen@qq.com') }
+        
+        it { should have_link("Sign out")}
         it { should have_title(user.nickname) }
         it { should have_selector('div.alert.alert-success', text: 'Welcome') }
       end
