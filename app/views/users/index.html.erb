@@ -20,8 +20,12 @@
         <td><%= user.password %></td>
         <td><%= user.nickname %></td>
         <td><%= link_to 'Show', user, class:'btn btn-default' %></td>
-        <td><%= link_to 'Edit', edit_user_path(user), class:'btn btn-default' %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-default' %></td>
+        <% if signed_in? && current_user?(user) %>
+          <td><%= link_to 'Edit', edit_user_path(user), class:'btn btn-default' %></td>
+          <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-default' %></td>
+        <% else %>
+          <td></td><td></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

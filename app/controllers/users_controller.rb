@@ -1,23 +1,19 @@
 class UsersController < ApplicationController
+  before_action :signed_in_user, only: [:edit, :update]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update]
 
-  # GET /users
-  # GET /users.json
   def index
     @users = User.all
   end
 
-  # GET /users/1
-  # GET /users/1.json
   def show
   end
 
-  # GET /users/new
   def new
     @user = User.new
   end
 
-  # GET /users/1/edit
   def edit
   end
 
@@ -33,16 +29,13 @@ class UsersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
   def update
     if @user.update(user_params)
-      flash[:success] = 'User was successfully updated.'
+      sign_in @user   #no need resign in, said update cookie in book
+      flash[:success] = 'Profile updated.'
       redirect_to @user
-      #format.json { render :show, status: :ok, location: @user }
     else
       render :edit
-      #format.json { render json: @user.errors, status: :unprocessable_entity }
     end
   end
 
@@ -56,6 +49,17 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+    end
+    
+    def signed_in_user
+      unless signed_in?
+        store_location
+        redirect_to signin_path, notice: "Please sign in."
+      end
+    end
+    
+    def correct_user
+      redirect_to root_path unless current_user?(@user)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

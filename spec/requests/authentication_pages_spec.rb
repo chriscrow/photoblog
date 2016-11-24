@@ -24,14 +24,11 @@ describe "Authentication" do
   
   describe "with valid infomation" do
     let(:user) { FactoryGirl.create(:user) }
-    before do
-      fill_in "Email", with: user.username.upcase
-      fill_in "Password", with: user.password
-      click_button "Sign in"
-    end
+    before { sign_in(user) }
     
     it { should have_title(full_title(user.nickname)) }
     it { should have_link("Profile", href: user_path(user)) }
+    it { should have_link("Settings", href: edit_user_path(user)) }
     it { should have_link("Sign out", href: signout_path) }
     it { should_not have_link("Sign in", href: signin_path) }
     
@@ -40,6 +37,54 @@ describe "Authentication" do
       
       it { should have_link("Sign in", href: signin_path) }
       it { should_not have_link("Sign out") }
+    end
+  end
+  
+  describe "for non-signed-in users" do
+    let(:user) { FactoryGirl.create(:user) }
+    
+    describe "visit edit page" do
+      before { visit edit_user_path(user) }
+      it { should have_title("Sign in") }
+      it { should have_selector("div.alert.alert-notice", text: "sign in") }
+    end
+    
+    describe "submiting to update action" do
+      before { patch user_path(user) }
+      it { expect(response).to redirect_to(signin_path) }
+    end
+    
+    describe "visit protected page after sign in" do
+      before do
+        visit edit_user_path(user)
+        fill_in "Email", with: user.username
+        fill_in "Password", with: user.password
+        click_button "Sign in"
+      end
+      
+      it { should have_title("Edit user") }
+    end
+  end
+  
+  describe "as wrong user" do
+    let(:user) { FactoryGirl.create(:user) }
+    let(:wrong_user) { FactoryGirl.create(:user, username: "wrong@qq.com") }
+    
+    describe "visit User#edit page" do
+      before do
+        sign_in user
+        visit edit_user_path(wrong_user)
+      end
+      
+      it { should_not have_title(full_title("Edit user")) }
+    end
+    
+    describe "submit a patch request to User#edit action" do
+      before do
+        sign_in user, no_capybara: true
+        patch user_path(wrong_user)
+      end
+      it { expect(response).to redirect_to(root_path) }
     end
   end
 end

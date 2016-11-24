@@ -1,6 +1,18 @@
-<h1>Editing User</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+<% provide(:title, "Edit user") %>
+<% provide(:submit_content, "Save changes") %>
+<div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-6">
+        <h1 class="text-center">Update your profile</h1>
+        
+        <%= render 'form' %>
+        
+        <%= gravatar_for @user %>
+        <a href="http://gravatar.com/emails">change</a>
+        <br>
+        
+        <%= link_to 'Show', @user %> |
+        <%= link_to 'Back', users_path %>
+    </div>
+</div>
