@@ -21,7 +21,7 @@
           <ul class="nav navbar-nav pull-right">
             <li><%= link_to "Home", root_path %></li>
             <% if signed_in? %>
-              <li><%= link_to "Users", "#" %></li>
+              <li><%= link_to "Users", users_path %></li>
               <li id="fat-menu" role="presentation" class="dropdwon">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                     Account <span class="caret"></span>
