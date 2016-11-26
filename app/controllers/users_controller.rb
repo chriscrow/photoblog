@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
-  before_action :signed_in_user, only: [:edit, :update, :index]
+  before_action :already_signed_in_user, only: [:new, :create]
+  before_action :sign_in_user, only: [:edit, :update, :index, :destroy]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update]
-
+  before_action :admin_user, only: [:destroy]
+  
   def index
     @users = User.paginate(page: params[:page])
   end
@@ -41,7 +43,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    
+    flash[:success] = "User destroyed."
     redirect_to users_path
   end
 
@@ -51,7 +53,11 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
     
-    def signed_in_user
+    def already_signed_in_user
+      redirect_to root_path if signed_in?
+    end
+    
+    def sign_in_user
       unless signed_in?
         store_location
         redirect_to signin_path, notice: "Please sign in."
@@ -61,9 +67,13 @@ class UsersController < ApplicationController
     def correct_user
       redirect_to root_path unless current_user?(@user)
     end
+    
+    def admin_user
+      redirect_to root_path unless current_user.admin? && !current_user?(@user)
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :password, :nickname)
+      params.require(:user).permit(:username, :password, :nickname, :password_confirmation)
     end
 end

@@ -4,7 +4,8 @@ namespace :db do
     User.create!(nickname: "example user",
                   username: "exampleuser@qq.com",
                   password: "foobar",
-                  password_confirmation: "foobar" )
+                  password_confirmation: "foobar",
+                  admin: true )
     99.times do |n|
       nickname = Faker::Name.name
       username = "example_#{n+1}@qq.com"

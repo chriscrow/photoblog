@@ -1,8 +1,7 @@
 class SessionsController < ApplicationController
+  before_action :already_signed_in_user, only: [:new]
+  
   def new
-    if signed_in?
-      redirect_to current_user
-    end
   end
   
   def create
@@ -22,6 +21,10 @@ class SessionsController < ApplicationController
   end
   
   private
+    def already_signed_in_user
+      redirect_to current_user if signed_in?
+    end
+  
     def user_params
       params.require(:session).permit(:username, :password)
     end

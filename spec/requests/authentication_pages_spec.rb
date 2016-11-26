@@ -6,8 +6,12 @@ describe "Authentication" do
   before { visit signin_path }
   
   describe "sign in page" do
-    it { should have_content("Sign in") }
     it { should have_title(full_title("Sign in")) }
+    it { should have_link("Sign in", href: signin_path) }
+    it { should_not have_link("Users", href: users_path) }
+    it { should_not have_link("Profile") }
+    it { should_not have_link("Settings") }
+    it { should_not have_link("Sign out", href: signout_path) }
   end
   
   describe "with invalid information" do
@@ -32,6 +36,28 @@ describe "Authentication" do
     it { should have_link("Settings", href: edit_user_path(user)) }
     it { should have_link("Sign out", href: signout_path) }
     it { should_not have_link("Sign in", href: signin_path) }
+    
+    describe "no need to show User#new" do
+      before { visit signup_path }
+      it { should_not have_title("Sign up") }
+    end
+    
+    describe "need auto redirect to profile visit sign_in" do
+      before { visit signin_path }
+      it { should_not have_title("Sign in") }
+      it { should have_title(full_title(user.nickname)) }
+    end
+    
+    describe "no need to post User#create action" do
+      let(:params) do
+        { user: { username: "sampleusernew@qq.com", nickname: "Sample User", password: "foobar", password_confirmation: "foobar" } }
+      end
+      before do
+        sign_in user, no_capybara: true
+        
+      end
+      it { expect{ post users_path, params }.not_to change(User, :count) }
+    end
     
     describe "followed by sign out" do
       before { click_link "Sign out" }
@@ -64,6 +90,18 @@ describe "Authentication" do
       end
       
       it { should have_title("Edit user") }
+      
+      describe "and normal sign in again should show profile" do
+        before do
+          click_link "Sign out"
+          visit signin_path
+          fill_in "Email", with: user.username
+          fill_in "Password", with: user.password
+          click_button "Sign in"
+        end
+        
+        it { should have_title(full_title(user.nickname)) }
+      end
     end
     
     describe "visiting the user index" do
@@ -90,6 +128,34 @@ describe "Authentication" do
         sign_in user, no_capybara: true
         patch user_path(wrong_user)
       end
+      it { expect(response).to redirect_to(root_path) }
+    end
+  end
+  
+  describe "as non admin user" do
+    let(:user) { FactoryGirl.create(:user) }
+    let(:non_admin) { FactoryGirl.create(:user) }
+    
+    before { sign_in non_admin, no_capybara: true }
+    
+    describe "submitting a DELETE request to the Users#destroy action" do
+      before { delete user_path(user) }
+      it { expect(response).to redirect_to(root_path) }
+    end
+  end
+  
+  describe "as admin user" do
+    let(:admin) { FactoryGirl.create(:admin) }
+    before do
+      sign_in admin, no_capybara: true
+    end
+    
+    it "should not delete himself" do
+      expect { delete user_path(admin) }.not_to change(User, :count)
+    end
+    
+    describe "should jump to home when delete himself" do
+      before { delete user_path(admin) }
       it { expect(response).to redirect_to(root_path) }
     end
   end
