@@ -1,6 +1,5 @@
 rvm:
   - 2.2
-script:
-  RAILS_ENV=test rake db:migrate
 before_script:
   rake db:create
+  RAILS_ENV=test rake db:migrate
