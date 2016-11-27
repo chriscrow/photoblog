@@ -11,11 +11,19 @@ describe "User Pages" do
   
   describe "profile page" do
     let(:user) { FactoryGirl.create(:user) }
+    let!(:a1) { FactoryGirl.create(:article, user: user, content: "Foo") }
+    let!(:a2) { FactoryGirl.create(:article, user: user, content: "Bar") }
     
     before { visit user_path(user) }
     
     it { should have_content(user.nickname) }
     it { should have_title(full_title(user.nickname)) }
+    
+    describe "articles" do
+      it { should have_content(a1.content) }
+      it { should have_content(a2.content) }
+      it { should have_content(user.articles.count) }
+    end
   end
   
   describe "signup" do

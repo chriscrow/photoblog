@@ -28,6 +28,7 @@ describe "Users" do
   it { should respond_to(:remember_token) }
   it { should respond_to(:authenticate) }
   it { should respond_to(:admin) }
+  it { should respond_to(:articles) }
   
   it { should be_valid }
   it { should_not be_admin }
@@ -144,5 +145,24 @@ describe "Users" do
   describe "remember token" do
     before { @user.save }
     its(:remember_token) { should_not be_blank }
+  end
+  
+  describe "article associations" do
+    before { @user.save }
+    let! (:old_article) { FactoryGirl.create(:article, user:@user, created_at: 1.day.ago) }
+    let! (:new_article) { FactoryGirl.create(:article, user:@user, created_at: 1.hour.ago) }
+    
+    it "should have the right articles int right order" do
+      expect(@user.articles.to_a).to eq [new_article, old_article]
+    end
+    
+    it "should destory associated articles" do
+      articles = @user.articles.to_a
+      @user.destroy
+      expect(articles).not_to be_empty
+      articles.each do |article|
+        expect(Article.where(id: article.id)).to be_empty
+      end
+    end
   end
 end

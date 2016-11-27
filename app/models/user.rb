@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :articles, dependent: :destroy
+  
   before_save { self.username = username.downcase }
   before_create :create_remember_token
   
