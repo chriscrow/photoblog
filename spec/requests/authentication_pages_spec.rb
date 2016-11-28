@@ -108,6 +108,42 @@ describe "Authentication" do
       before { visit users_path }
       it { should have_title("Sign in") }
     end
+    
+    describe "visit article index" do
+      before { visit articles_path }
+      it { should have_content "All articles" }
+    end
+    
+    describe "visit show article" do
+      let(:article) { FactoryGirl.create(:article) }
+      before { visit article_path(article) }
+      it { should have_content article.content }
+    end
+    
+    describe "visit new article" do
+      before { get new_article_path }
+      it { expect(response).to redirect_to signin_path }
+    end
+    
+    describe "submitting to the create article" do
+      before { post articles_path }
+      it { expect(response).to redirect_to signin_path }
+    end
+    
+    describe "visit edit article" do
+      before { get edit_article_path(FactoryGirl.create(:article)) }
+      it { expect(response).to redirect_to signin_path }
+    end
+    
+    describe "submitting to update article" do
+      before { patch article_path(FactoryGirl.create(:article)) }
+      it { expect(response).to redirect_to signin_path }
+    end
+    
+    describe "submitting to the destory article" do
+      before { delete article_path(FactoryGirl.create(:article)) }
+      it { expect(response).to redirect_to signin_path }
+    end
   end
   
   describe "as wrong user" do

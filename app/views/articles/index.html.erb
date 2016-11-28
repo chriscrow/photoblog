@@ -1,7 +1,8 @@
-<%= link_to 'New articles', new_article_path , class: 'btn btn-default'%>
+<% provide(:title, "All articles")%>
+<h1>All articles</h1>
 <% @articles.each do |article| %>
     <div class="container section">
-        <h3 class="text-center"><%= article.title %></h3>
+        <h3 class="text-center"><%= get_article_title article %></h3>
         <div class="text-center subtitle">
             <span>NOVEMBER 14, 2016</span> <span>118 views</span>
         </div>
@@ -12,7 +13,7 @@
                 </p>
             </div>
             <div class="col-md-4">
-                <%= article.text %>
+                <%= article.content %>
             </div>
         </div>
         <div class="pull-right">

@@ -1,10 +1,10 @@
 <p>
     <strong>Title:</strong>
-    <%= @article.title %>
+    <%= get_article_title @article %>
 </p>
 <p>
     <strong>Text:</strong>
-    <%= markdown(@article.text) %>
+    <%= markdown(@article.content) %>
 </p>
 
 <h2>Comments</h2>
