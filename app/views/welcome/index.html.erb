@@ -1,3 +1,19 @@
-<h1>Hello Rails</h1>
-<%= link_to 'My Blog', controller: 'articles' %>
+<% if signed_in? %>
+    <div class="row">
+        <div class="col-md-4">
+            <section>
+                <%= render 'shared/user_info' %>
+            </section>
+            <section>
+                <%= link_to "Post", new_article_path, class: "btn btn-primary" %>
+            </section>
+        </div>
+        <div class="col-md-8">
+            <%= render 'shared/feed' %>
+        </div>
+    </div>
+<% else %>
+    <h1>Hello Rails</h1>
+    <%= link_to 'My Blog', controller: 'articles' %>
+<% end %>
 

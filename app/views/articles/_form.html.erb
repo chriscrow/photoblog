@@ -1,16 +1,5 @@
 <%= form_for @article do |f| %>
-    <% if @article.errors.any? %>
-        <div id="error_explanation">
-            <h2>
-                <%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:
-            </h2>
-            <ul>
-                <% @article.errors.full_messages.each do |msg| %>
-                    <li><%= msg %></li>
-                <% end %>
-            </ul>
-        </div>
-    <% end %>
+    <%= render 'shared/error_messages', object: f.object %>
 
     <p>
         <%= f.label :content %><br>

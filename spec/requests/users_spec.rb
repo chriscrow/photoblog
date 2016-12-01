@@ -29,6 +29,7 @@ describe "Users" do
   it { should respond_to(:authenticate) }
   it { should respond_to(:admin) }
   it { should respond_to(:articles) }
+  it { should respond_to(:feed) }
   
   it { should be_valid }
   it { should_not be_admin }
@@ -163,6 +164,16 @@ describe "Users" do
       articles.each do |article|
         expect(Article.where(id: article.id)).to be_empty
       end
+    end
+    
+    describe "status" do
+      let! (:unfollowed_post) do
+        FactoryGirl.create(:article, user: FactoryGirl.create(:user))
+      end
+      
+      its(:feed) { should include(old_article) }
+      its(:feed) { should include(new_article) }
+      its(:feed) { should_not include(unfollowed_post) }
     end
   end
 end
