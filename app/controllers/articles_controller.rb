@@ -1,12 +1,13 @@
 class ArticlesController < ApplicationController
   before_action :sign_in_user, only: [:new, :edit, :create, :update, :destroy]
+  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :correct_user, only: [:destroy]
   
   def index
     @articles = Article.all
   end
 
   def show
-    @article = Article.find(params[:id])
   end
 
   def new
@@ -14,7 +15,6 @@ class ArticlesController < ApplicationController
   end
   
   def edit
-    @article = Article.find(params[:id])
   end
 
   def create
@@ -27,8 +27,6 @@ class ArticlesController < ApplicationController
     end
   end
   def update
-    @article = Article.find(params[:id])
-    
     if @article.update(article_params)
         redirect_to @article
     else
@@ -37,13 +35,20 @@ class ArticlesController < ApplicationController
   end
   
   def destroy
-    @article = Article.find(params[:id])
     @article.destroy
-    
     redirect_to articles_path
   end
   
   private
+    def set_article
+      @article = Article.find(params[:id])
+    end
+  
+    def correct_user
+      arti = current_user.articles.find_by_id(@article.id)
+      redirect_to root_path if arti == nil
+    end
+  
     def article_params
         params.require(:article).permit(:content)
     end

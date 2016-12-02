@@ -28,4 +28,16 @@ describe "Article Page" do
       end
     end
   end
+  
+  describe "article destruction" do
+    before { FactoryGirl.create(:article, user:user) }
+    
+    describe "as correct_user" do
+      before { visit root_path }
+      
+      it "should delete a article" do
+        expect{ click_link "delete" }.to change(Article, :count).by(-1)
+      end
+    end
+  end
 end
