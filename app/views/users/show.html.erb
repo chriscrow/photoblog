@@ -2,23 +2,16 @@
 <div class="row">
     <aside class="col-md-4">
 
-        <%= gravatar_for @user %>
-
-        <p>
-          <strong>Email:</strong>
-          <%= @user.username %>
-        </p>
-
-        <p>
-          <strong>Nickname:</strong>
-          <%= @user.nickname %>
-        </p>
-        <% if signed_in? && current_user?(@user) %>
-          <%= link_to 'Edit', edit_user_path(@user) %> |
-        <% end %>
-        <%= link_to 'Back', users_path %>
+        <section>
+            <%= gravatar_for @user %>
+            <%= @user.nickname %>
+        </section>
+        <section>
+            <%= render 'shared/stats' %>
+        </section>
     </aside>
     <div class="col-md-8">
+        <%= render 'follow_form' if signed_in? %>
         <% if @user.articles.any? %>
             <h3>Articles (<%= @user.articles.count %>)</h3>
             <ol class="articles">

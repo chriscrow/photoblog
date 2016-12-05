@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
-  resources :users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
   resources :sessions, only: [:new, :create, :destroy]
   resources :articles do
     resources :comments
   end
+  resources :relationships, only: [:create, :destroy]
   
   get 'welcome/index'
 
