@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   end
   
   def feed
-    Article.where("user_id = ?", id)
+    Article.from_users_followed_by(self)
   end
   
   def following?(other_user)

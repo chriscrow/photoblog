@@ -177,10 +177,21 @@ describe "Users" do
       let! (:unfollowed_post) do
         FactoryGirl.create(:article, user: FactoryGirl.create(:user))
       end
+      let (:followed_user) { FactoryGirl.create(:user) }
+      
+      before do
+        @user.follow!(followed_user)
+        3.times { followed_user.articles.create!(content: "Lorem ipsum") }
+      end
       
       its(:feed) { should include(old_article) }
       its(:feed) { should include(new_article) }
       its(:feed) { should_not include(unfollowed_post) }
+      its(:feed) do
+        followed_user.articles.each do |article|
+          should include(article)
+        end
+      end
     end
   end
   

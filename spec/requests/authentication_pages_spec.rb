@@ -144,6 +144,26 @@ describe "Authentication" do
       before { delete article_path(FactoryGirl.create(:article)) }
       it { expect(response).to redirect_to signin_path }
     end
+    
+    describe "visiting the following page" do
+      before { visit following_user_path(user) }
+      it { should have_content("Sign in") }
+    end
+    
+    describe "visiting the followers page" do
+      before { visit followers_user_path(user) }
+      it { should have_content("Sign in") }
+    end
+    
+    describe "submiting to the create Relationships action" do
+      before { post relationships_path }
+      it { expect(response).to redirect_to(signin_path) }
+    end
+    
+    describe "submiting to the destroy Relationships action" do
+      before { delete relationship_path(1) }
+      it { expect(response).to redirect_to(signin_path) }
+    end
   end
   
   describe "as wrong user" do
