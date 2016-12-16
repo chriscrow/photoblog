@@ -1,13 +1,13 @@
-<a href="<%= user_path current_user %>">
-    <%= gravatar_for current_user, size:52 %>
+<a href="<%= user_path object %>">
+    <%= gravatar_for object, size:52 %>
 </a>
 <h1>
-    <%= current_user.nickname %>
+    <%= object.nickname %>
 </h1>
 <span>
-    <%= link_to "View my profile", current_user %>
+    <%= link_to "View my profile", object %>
 </span>
 
 <span>
-  <%= pluralize(current_user.articles.count, "article") %>
+  <%= pluralize(object.articles.count, "article") %>
 </span>

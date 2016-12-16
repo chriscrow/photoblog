@@ -10,8 +10,11 @@ $grayMediumLight: #eaeaea;
 }
 
 body {
-    padding-top: 50px;
     background-color: #fafafa;
+}
+
+.navbar {
+    border-radius: 0px;
 }
 
 .subtitle {
@@ -88,6 +91,17 @@ aside {
 .gravatar {
     float: left;
     margin-right: 10px;
+    border-radius: 6px;
+    background-color: white;
+    border: 1px solid #cdcdcd;
+    img {
+        margin: 4px;
+        border-radius: 4px;
+    }
+    &:hover {
+        box-shadow: 0px 1px 12px 0px rgba(48, 57, 66, 0.5);
+        border: 1px solid white;
+    }
 }
 
 .stats {

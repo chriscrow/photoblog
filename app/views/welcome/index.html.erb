@@ -1,8 +1,8 @@
 <% if signed_in? %>
     <div class="row">
-        <div class="col-md-4">
+        <aside class="col-md-3">
             <section>
-                <%= render 'shared/user_info' %>
+                <%= render 'shared/user_info', object: current_user %>
             </section>
             <section>
                 <%= render 'shared/stats' %>
@@ -10,8 +10,8 @@
             <section>
                 <%= link_to "Post", new_article_path, class: "btn btn-primary" %>
             </section>
-        </div>
-        <div class="col-md-8">
+        </aside>
+        <div class="col-md-9">
             <%= render 'shared/feed' %>
         </div>
     </div>
