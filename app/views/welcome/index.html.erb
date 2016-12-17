@@ -16,7 +16,10 @@
         </div>
     </div>
 <% else %>
-    <h1>Hello Rails</h1>
-    <%= link_to 'My Blog', controller: 'articles' %>
+    <% provide(:info_title, "Photo Blog") %>
+    <% provide(:info_subtitle, "A Personal Blog by Chris Chen") %>
+    <% provide(:info_bg, "/assets/home-bg.jpg") %>
+    
+    <%= render 'shared/feed' %>
 <% end %>
 

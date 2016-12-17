@@ -1,6 +1,6 @@
     <!-- 公共nav header -->
-    <nav class="navbar navbar-inverse">
-      <div class="container">
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+      <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
@@ -8,18 +8,20 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">玉衡</a>
+          <a class="navbar-brand" href="#">Photo Blog</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li><%= link_to '首页', '/' %></li>
-            <li class="active"><%= link_to 'Blog', "/blog/" %></li>
+            <li><%= link_to 'Blog', "/blog/" %></li>
             <li><%= link_to '关于', "/about.html" %></li>
             <li><%= link_to '作品', "/works.html" %></li>
             <li><%= link_to '联系', "/contact.html" %></li>
           </ul>
-          <ul class="nav navbar-nav pull-right">
+          <ul class="nav navbar-nav navbar-right">
             <li><%= link_to "Home", root_path %></li>
+            <li><%= link_to "About", "#" %></li>
+            <li><%= link_to "Contact", "#" %></li>
             <% if signed_in? %>
               <li><%= link_to "Users", users_path %></li>
               <li id="fat-menu" role="presentation" class="dropdwon">
