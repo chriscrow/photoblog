@@ -14,7 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
-//= require_tree .
+//remove require_tree .
 
 // Floating label headings for the contact form
 $(function() {
