@@ -4,8 +4,9 @@
 
 var editor;
 
-$ (function() {
-    alert("test")
+var ready = function() {
+    if($('.articles.edit').length == 0) return;
+    alert("editormd inited")
     editor = editormd('editormd',{
           path: 'https://pandao.github.io/editor.md/lib/',
           height: 640,
@@ -20,4 +21,8 @@ $ (function() {
         path    : "../lib/"
     });
     */
-});
+};
+
+// this two supposed not work at same time
+$(document).ready(ready);
+//$(document).on('page:load', ready);  //just for turbolink
