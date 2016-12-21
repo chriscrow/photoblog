@@ -1,16 +1,24 @@
-<p>
-    <strong>Title:</strong>
-    <%= get_article_title @article %>
-</p>
-<p>
-    <strong>Text:</strong>
-    <%= markdown(@article.content) %>
-</p>
+<% provide(:info_bg, "/assets/post-bg.jpg") %>
+<% content_for :info_header do %>
+    <div class="post-heading">
+        <h1><%= get_article_title @article %></h1>
+        <!-- <h2 class="subheading">Problems look mighty small from 150 miles up</h2> -->
+        <span class="meta">Posted by <%= link_to @article.user.nickname, user_path(@article.user) %> on August 24, 2014</span>
+    </div>
+<% end %>
 
-<h2>Comments</h2>
-<%= render @article.comments %>
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div id="editormd-preview">
+            <textarea style="display:block;"><%= @article.content %></textarea>               
+        </div>
 
-<h2>Add a comment:</h2>
-<%= render 'comments/form' %>
+        <h2>Comments</h2>
+        <%= render @article.comments %>
 
-<%= link_to 'Edit', edit_article_path(@article) %> | <%= link_to 'Back', articles_path %>
+        <h2>Add a comment:</h2>
+        <%= render 'comments/form' %>
+
+        <%= link_to 'Edit', edit_article_path(@article) %> | <%= link_to 'Back', articles_path %>
+    </div>
+</div>

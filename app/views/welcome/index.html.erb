@@ -1,3 +1,11 @@
+<% content_for :info_header do %>
+    <div class="site-heading">
+        <h1>Photo Blog</h1>
+        <hr class="small">
+        <span class="subheading">A Personal Blog by Chris Chen</span>
+    </div>
+<% end %>
+
 <% if signed_in? %>
     <div class="row">
         <aside class="col-md-3">
@@ -16,8 +24,6 @@
         </div>
     </div>
 <% else %>
-    <% provide(:info_title, "Photo Blog") %>
-    <% provide(:info_subtitle, "A Personal Blog by Chris Chen") %>
     <% provide(:info_bg, "/assets/home-bg.jpg") %>
     
     <%= render 'shared/feed' %>

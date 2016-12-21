@@ -5,13 +5,23 @@
 var editor;
 
 var ready = function() {
-    if($('.articles.edit').length == 0) return;
-    alert("editormd inited")
-    editor = editormd('editormd',{
-          path: 'https://pandao.github.io/editor.md/lib/',
-          height: 640,
-          syncScrolling: "single"
-          });
+    if($('.articles.edit').length != 0) {
+        editor = editormd('editormd',{
+              path: 'https://pandao.github.io/editor.md/lib/',
+              height: 640,
+              syncScrolling: "single"
+              });
+    } else if ($('.articles.show').length != 0) {
+        alert("show init")
+        editormd.markdownToHTML("editormd-preview", {
+            htmlDecode      : "style,script,iframe",  // you can filter tags decode
+            emoji           : true,
+            taskList        : true,
+            tex             : true,  // 默认不解析
+            flowChart       : true,  // 默认不解析
+            sequenceDiagram : true,  // 默认不解析
+        });
+    }
     /*
     // or
     editor = editormd({

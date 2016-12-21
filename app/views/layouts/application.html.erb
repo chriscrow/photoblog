@@ -9,7 +9,7 @@
 </head>
 <body class="<%= controller_name %> <%= action_name %>">
     <%= render 'layouts/header' %>
-    <% if yield(:info_title) != "" %>
+    <% if yield(:info_header) != "" %>
         <%= render 'layouts/info_header' %>
     <% else %>
         <div class="info_header_placeholder"></div>
