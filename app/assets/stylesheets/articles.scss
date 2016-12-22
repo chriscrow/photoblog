@@ -3,6 +3,10 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 @import "editormd";
+@import "./editormd/codemirror.min";
+@import "./editormd/dialog";
+@import "./editormd/matchesonscrollbar";
+@import "./editormd/foldgutter";
 
 .navbar-custom {
     z-index: 11;
