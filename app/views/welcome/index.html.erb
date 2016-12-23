@@ -1,3 +1,4 @@
+<% provide(:info_bg, "/assets/home-bg.jpg") %>
 <% content_for :info_header do %>
     <div class="site-heading">
         <h1>Photo Blog</h1>
@@ -24,8 +25,6 @@
         </div>
     </div>
 <% else %>
-    <% provide(:info_bg, "/assets/home-bg.jpg") %>
-    
     <%= render 'shared/feed' %>
 <% end %>
 
