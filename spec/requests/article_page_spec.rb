@@ -21,7 +21,10 @@ describe "Article Page" do
     end
     
     describe "with valid infomation" do
-      before { fill_in "article_content", with: "#I'am title\nand content" }
+      before do
+        fill_in "article_content", with: "#I'am title\nand content"
+        fill_in "article_title", with: "#I'am title"
+      end
       
       it "should create an article" do
         expect { click_button "Post" }.to change(Article, :count)

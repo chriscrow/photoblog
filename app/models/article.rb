@@ -4,6 +4,7 @@ class Article < ActiveRecord::Base
   default_scope -> { order('created_at DESC') }
   validates :user_id, presence: true
   validates :content, presence: true
+  validates :title, presence: true
   
   def self.from_users_followed_by(user)
     followed_user_ids = "SELECT followed_id FROM relationships

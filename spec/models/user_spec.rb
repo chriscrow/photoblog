@@ -181,7 +181,7 @@ describe "Users" do
       
       before do
         @user.follow!(followed_user)
-        3.times { followed_user.articles.create!(content: "Lorem ipsum") }
+        3.times { followed_user.articles.create!(content: "Lorem ipsum", title:"title") }
       end
       
       its(:feed) { should include(old_article) }

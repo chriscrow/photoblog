@@ -1,9 +1,9 @@
 <% provide(:info_bg, "/assets/post-bg.jpg") %>
 <% content_for :info_header do %>
     <div class="post-heading">
-        <h1><%= get_article_title @article %></h1>
+        <h1><%= @article.title %></h1>
         <!-- <h2 class="subheading">Problems look mighty small from 150 miles up</h2> -->
-        <span class="meta">Posted by <%= link_to @article.user.nickname, user_path(@article.user) %> on August 24, 2014</span>
+        <span class="meta">Posted by <%= link_to @article.user.nickname, user_path(@article.user) %> on <%= @article.created_at.to_date.to_formatted_s :long %></span>
     </div>
 <% end %>
 
