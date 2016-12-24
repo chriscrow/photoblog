@@ -2,7 +2,7 @@
 <h1>All articles</h1>
 <% @articles.each do |article| %>
     <div class="container section">
-        <h3 class="text-center"><%= get_article_title article %></h3>
+        <h3 class="text-center"><%= article.title %></h3>
         <div class="text-center subtitle">
             <span><%= article.created_at.to_date.to_formatted_s :long_ordinal %></span> <span>118 views</span>
         </div>
@@ -24,3 +24,5 @@
         </div>
     </div>
 <% end %>
+
+<%= will_paginate %>

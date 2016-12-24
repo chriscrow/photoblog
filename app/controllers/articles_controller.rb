@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   before_action :correct_user, only: [:destroy]
   
   def index
-    @articles = Article.all
+    @articles = Article.paginate(per_page: 10, page: params[:page])
   end
 
   def show

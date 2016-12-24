@@ -43,4 +43,19 @@ describe "Article Page" do
       end
     end
   end
+  
+  describe "article index" do
+    before do
+      30.times do |n|
+        FactoryGirl.create(:article, user:user, title:"title#{n}")
+      end
+      visit articles_path
+    end
+    
+    it "should list all articles" do
+      Article.paginate(per_page: 10, page: 1).each do |article|
+        expect(page).to have_selector("h3", text: article.title)
+      end
+    end
+  end
 end
