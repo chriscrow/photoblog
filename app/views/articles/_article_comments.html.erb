@@ -1,0 +1,17 @@
+<div class="article-comments">
+    <hr/>
+    <span><div class="count"><%= @article.comments.length %></div> Comments</span>
+    <% if @article.comments.any? %>
+        <hr/>
+
+        <%= render @article.comments %>
+    <% end %>
+    
+    <hr>
+    <h2 class="clearfix">Add Comment
+        <% if current_user == nil %>
+            <%= link_to "Log in", signin_path, class:"btn btn-default btn-sm pull-right login-btn" %>
+        <% end %>
+    </h2>
+    <%= render 'comments/form' %>
+</div>

@@ -311,6 +311,31 @@ hr.small {
 	}
 }
 
+// Articles Show
+.content-footer {
+    text-align: right;
+    font-size: 12px;
+    em {
+        
+        color: $gray-light;
+    }
+}
+
+// Comments
+.article-comments {
+    color:$gray;
+    font-size:15px;
+    .count {
+        font-size:30px;
+        color:black;
+    }
+    h2 {
+        font-size:18px;
+        color:black;
+        margin-bottom:30px;
+    }
+}
+
 // Sections
 
 .section-heading {
@@ -331,7 +356,10 @@ hr.small {
 }
 
 footer {
-	padding: 50px 0 65px;
+    margin-top: 15px;
+    border-top: 1px solid $grayMediumLight;
+	padding: 10px 0 15px;
+    color: $gray-light;
 	.list-inline {
 		margin: 0;
 		padding: 0;
@@ -341,6 +369,16 @@ footer {
 		text-align: center;
 		margin-bottom: 0;
 	}
+    a{
+        color: $gray;
+        &:hover {
+            color: $gray-darker;
+        }
+    }
+    p{
+        font-size:14px;
+        margin:10px 0;
+    }
 }
 
 // Contact Form Styles
@@ -411,13 +449,18 @@ form .row:first-child .floating-label-form-group {
 	font-size: 14px;
 	font-weight: 800;
 	letter-spacing: 1px;
-	border-radius: 0;
+	//border-radius: 0;
 	padding: 15px 25px;
 }
 
 .btn-lg {
 	font-size: 16px;
 	padding: 25px 35px;
+}
+
+.btn-sm {
+	font-size: 12px;
+	padding: 5px 10px;
 }
 
 .btn-default {
@@ -427,6 +470,10 @@ form .row:first-child .floating-label-form-group {
 		border: 1px solid $theme-primary;
 		color: white;
 	}
+}
+
+textarea.form-control {
+    //border-radius: 0;
 }
 
 // Pager Styling
@@ -492,6 +539,10 @@ img::-moz-selection {
 	background: transparent;
 }
 
+textarea {
+    resize: none;
+}
+
 body {
 	-webkit-tap-highlight-color: $theme-primary;
 }
@@ -519,22 +570,6 @@ body {
     padding: 30px;
     &:hover {
         box-shadow: 0px 1px 12px 0px rgba(48, 57, 66, 0.5);
-    }
-}
-
-/* footer */
-footer {
-    margin-top: 45px;
-    padding-top: 5px;
-    border-top: 1px solid $grayMediumLight; color: $gray-light;
-    a{
-        color: $gray;
-        &:hover {
-            color: $gray-darker;
-        }
-    }
-    p{
-        font-size:14px;
     }
 }
 
@@ -618,16 +653,16 @@ aside {
 }
 
 /* forms */
-input, textarea, select, .uneditable-input {
-    border: 1px solid #bbb;
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    @include box_sizing;
-}
-input {
-    height: auto !important;
-}
+//input, textarea, select, .uneditable-input {
+//    border: 1px solid #bbb;
+//    width: 100%;
+//    padding: 10px;
+//    margin-bottom: 15px;
+//    @include box_sizing;
+//}
+//input {
+//    height: auto !important;
+//}
 .field_with_errors {
     width:100%;
 }

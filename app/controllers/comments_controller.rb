@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :already_signed_in_user, only: [:create]
 
   def create
     @article = Article.find(params[:article_id])
@@ -16,5 +17,11 @@ class CommentsController < ApplicationController
   private
     def comment_params
       params.require(:comment).permit(:commenter, :body)
+    end
+    
+    def already_signed_in_user
+      if current_user != nil
+        params[:comment][:commenter] = current_user.nickname
+      end
     end
 end
