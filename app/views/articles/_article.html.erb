@@ -1,7 +1,23 @@
-<li>
-    <p><%= article.content %></p>
-    <p class="timestamp">Posted at <%= time_ago_in_words article.created_at %> ago.</p>
-    <% if current_user?(article.user) %>
-        <%= link_to "delete", article, method: :delete, data: { confirm: "Are you true" }, title: article.content %>
-    <% end %>
+<li class="section">
+    <h3 class="text-center title"><%= link_to article.title, article %></h3>
+    <div class="text-center subtitle">
+        <span><%= article.created_at.to_date.to_formatted_s :long_ordinal %></span> <span>118 views</span>
+    </div>
+    <div class="row">
+        <div class="col-md-8 main-image">
+            <p>
+                some img
+            </p>
+        </div>
+        <div class="col-md-4">
+          <div class="markdown-body editormd-html-preview">
+            <%= markdown(article.content) %>
+          </div>
+        </div>
+    </div>
+    <div class="text-right">
+        <small class="updated-time">Last edit: <%= article.updated_at.strftime "%b %d, %Y" %></small>
+        <%= link_to 'Edit', edit_article_path(article) , class: 'btn btn-default'%>
+        <%= link_to 'Delete', article_path(article), method: :delete, data: { confirm: 'Are you sure?' } , class: 'btn btn-default'%>
+    </div>
 </li>

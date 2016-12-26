@@ -22,6 +22,8 @@ engines:
     enabled: true
   rubocop:
     enabled: true
+  scss-lint:
+    enabled: true
 ratings:
   paths:
   - Gemfile.lock
@@ -38,8 +40,13 @@ ratings:
   - "**.module"
   - "**.php"
   - "**.py"
+  - "**.scss"
 exclude_paths:
 - config/
 - db/
 - spec/
 - vendor/
+- "app/assets/javascripts/editormd.js"
+- app/assets/javascripts/editormd
+- app/assets/stylesheets/editormd
+- "app/assets/stylesheets/editormd.scss"

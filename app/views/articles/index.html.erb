@@ -1,28 +1,7 @@
 <% provide(:title, "All articles")%>
 <h1>All articles</h1>
-<% @articles.each do |article| %>
-    <div class="container section">
-        <h3 class="text-center"><%= article.title %></h3>
-        <div class="text-center subtitle">
-            <span><%= article.created_at.to_date.to_formatted_s :long_ordinal %></span> <span>118 views</span>
-        </div>
-        <div class="row">
-            <div class="col-md-8" style="min-height:400px">
-                <p>
-                    some img
-                </p>
-            </div>
-            <div class="col-md-4">
-                <%= markdown(article.content) %>
-            </div>
-        </div>
-        <div class="pull-right">
-            <small>Last edit: <%= article.updated_at.strftime "%b %d, %Y" %> </small>
-            <%= link_to 'Show', article_path(article) , class: 'btn btn-default'%>
-            <%= link_to 'Edit', edit_article_path(article) , class: 'btn btn-default'%>
-            <%= link_to 'Delete', article_path(article), method: :delete, data: { confirm: 'Are you sure?' } , class: 'btn btn-default'%>
-        </div>
-    </div>
-<% end %>
+<ol class="article-list">
+  <%= render @articles %>
+</ol>
 
 <%= will_paginate %>

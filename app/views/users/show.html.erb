@@ -1,7 +1,6 @@
 <% provide(:title, @user.nickname) %>
 <div class="row">
-    <aside class="col-md-3">
-
+    <aside class="col-md-2">
         <section>
             <%= render 'shared/user_info', object: @user %>
         </section>
@@ -12,11 +11,11 @@
             <%= link_to "Post", new_article_path, class: "btn btn-primary" %>
         </section>
     </aside>
-    <div class="col-md-9">
+    <div class="col-md-10">
         <%= render 'follow_form' if signed_in? %>
         <% if @user.articles.any? %>
             <h3>Articles (<%= @user.articles.count %>)</h3>
-            <ol class="articles">
+            <ol class="article-list">
                 <%= render @articles %>
             </ol>
             <%= will_paginate @articles %>
