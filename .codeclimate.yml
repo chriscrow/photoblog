@@ -46,7 +46,7 @@ exclude_paths:
 - db/
 - spec/
 - vendor/
-- "app/assets/javascripts/editormd.js"
+- app/assets/javascripts/editormd.js
 - app/assets/javascripts/editormd
 - app/assets/stylesheets/editormd
-- "app/assets/stylesheets/editormd.scss"
+- app/assets/stylesheets/editormd.scss

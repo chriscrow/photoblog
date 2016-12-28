@@ -73,13 +73,6 @@ a {
   &:focus {
     color: $theme-primary;
   }
-
-  img {
-    &:hover,
-    &:focus {
-      cursor: zoom-in;
-    }
-  }
 }
 
 blockquote {
@@ -511,8 +504,6 @@ footer {
     -ms-transition: top 0.3s ease,opacity .3s ease;
     -webkit-transition: top 0.3s ease,opacity .3s ease;
     transition: top 0.3s ease,opacity .3s ease;
-    vertical-align: middle;
-    vertical-align: baseline;
     z-index: 0;
   }
 
@@ -650,85 +641,102 @@ body {
 }
 
 .info_header_placeholder {
-    background-image: -webkit-linear-gradient(top,#3c3c3c 0,#222 100%);
-    background-image: -o-linear-gradient(top,#3c3c3c 0,#222 100%);
-    background-image: -webkit-gradient(linear,left top,left bottom,from(#3c3c3c),to(#222));
-    background-image: linear-gradient(to bottom,#3c3c3c 0,#222 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3c3c3c', endColorstr='#ff222222', GradientType=0);
-    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
-    background-repeat: repeat-x;
-    height: 60px;
+  background-image: -webkit-linear-gradient(top,#3c3c3c 0,#222 100%);
+  background-image: -o-linear-gradient(top,#3c3c3c 0,#222 100%);
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#3c3c3c),to(#222));
+  background-image: linear-gradient(to bottom,#3c3c3c 0,#222 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3c3c3c', endColorstr='#ff222222', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+  background-repeat: repeat-x;
+  height: 60px;
 }
 
 /* miscellaneous */
 .debug_dump {
-    clear: both;
-    float: left;
-    width: 100%;
-    margin-top: 45px;
-    @include box_sizing;
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
 }
 
 /* sidebar */
 aside {
-    section {
-        padding: 10px 0;
-        border-top: 1px solid $gray-lighter;
-        &:first-child {
-            border: 0;
-            padding-top: 0;
-        }
-        span {
-            display: block;
-            margin-bottom: 3px;
-            line-height: 1;
-        }
-        h1 {
-            font-size: 1.4em;
-            text-align: left;
-            letter-spacing: -1px;
-            margin-bottom: 3px;
-            margin-top: 0px;
-        }
+  section {
+    border-top: 1px solid $gray-lighter;
+    padding: 10px 0;
+    text-align: center;
+
+    &:first-child {
+      border: 0;
+      padding-top: 0;
     }
-}
-.gravatar {
-    float: left;
-    margin-right: 10px;
-    border-radius: 6px;
+
+    span {
+      display: block;
+      margin-bottom: 3px;
+      line-height: 1;
+    }
+
+    .btn {
+      margin: auto;
+    }
+  }
+
+  .gravatar {
     background-color: white;
     border: 1px solid #cdcdcd;
+    border-radius: 6px;
+    margin: auto;
+    width: 62px;
+
     img {
-        margin: 4px;
-        border-radius: 4px;
+      margin: 4px;
+      border-radius: 4px;
     }
+
     &:hover {
-        box-shadow: 0px 1px 12px 0px rgba(48, 57, 66, 0.5);
-        border: 1px solid white;
+      box-shadow: 0px 1px 12px 0px rgba(48, 57, 66, 0.5);
+      border: 1px solid white;
     }
+  }
+}
+
+.user-info {
+  font-size: 18px;
+
+  h1 {
+    font-size: 25px;
+    text-decoration: none;
+    letter-spacing: -1px;
+    margin: 30px 0 15px;
+  }
 }
 
 .stats {
-    overflow: auto;
-    a{
-        float: left;
-        padding: 0 10px;
-        border-left: 1px solid $gray-lighter;
-        color: gray;
-        
-        &:first-child {
-            padding-left: 0;
-            border: 0;
-        }
-        
-        &:hover {
-            text-decoration: none;
-            color: $brand-primary;
-        }
+  font-size: 15px;
+  overflow: auto;
+
+  a{
+    float: left;
+    padding: 0 10px;
+    border-left: 1px solid $gray-lighter;
+    color: gray;
+    width: 50%;
+    
+    &:first-child {
+      border: 0;
     }
-    strong {
-        display: block;
+    
+    &:hover {
+      text-decoration: none;
+      color: $brand-primary;
     }
+  }
+  strong {
+    display: block;
+    font-size: 18px;
+  }
 }
 
 .user_avatars {
@@ -740,16 +748,6 @@ aside {
 }
 
 /* forms */
-//input, textarea, select, .uneditable-input {
-//    border: 1px solid #bbb;
-//    width: 100%;
-//    padding: 10px;
-//    margin-bottom: 15px;
-//    @include box_sizing;
-//}
-//input {
-//    height: auto !important;
-//}
 .field_with_errors {
     width:100%;
 }
@@ -776,6 +774,10 @@ aside {
     padding: 10px 0;
     border-top: 1px solid #e8e8e8;
   }
+  .gravatar {
+    float: left;
+    margin-right: 10px;
+  }
 }
 .content {
   display: block;
@@ -784,10 +786,7 @@ aside {
 .timestamp {
   color: $gray-light;
 }
-.gravatar {
-float: left;
-  margin-right: 10px;
-}
+
 aside {
   textarea {
     height: 100px;
