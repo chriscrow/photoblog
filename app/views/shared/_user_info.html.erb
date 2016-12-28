@@ -2,7 +2,7 @@
     <%= gravatar_for object, size:52 %>
 </a>
 <h1>
-    <%= link_to object.nickname, object %>
+    <%= object.nickname %>
 </h1>
 <span>
   <%= pluralize(object.articles.count, "article") %>
