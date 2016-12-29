@@ -8,15 +8,16 @@ describe "Static pages" do
     describe "for signed in users" do
       let(:user) { FactoryGirl.create(:user) }
       before do
-        FactoryGirl.create(:article, user: user, content: "Lorem ipsum")
-        FactoryGirl.create(:article, user: user, content: "Dolor sit amet")
+        FactoryGirl.create(:article, user: user, title: "Lorem", content: "Lorem ipsum")
+        FactoryGirl.create(:article, user: user, title: "Dolor", content: "Dolor sit amet")
         sign_in user
         visit root_path
       end
       
       it "should render user's feed" do
         user.feed.each do |item|
-          expect(page).to have_selector("li##{item.id}", text:item.content)
+          expect(page).to have_selector("h3.title", text:item.title)
+          expect(page).to have_selector(".editormd-html-preview", text:item.content)
         end
       end
       

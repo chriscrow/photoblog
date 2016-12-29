@@ -140,6 +140,15 @@ hr.small {
         color: $transparent-white-8;
       }
     }
+
+    .dropdown-menu li a {
+      color: $gray;
+
+      &:hover,
+      &:focus {
+        color: $theme-primary
+      }
+    } 
   }
 
   @media only screen and (min-width: 1170px) {
@@ -174,16 +183,12 @@ hr.small {
         }
       }
 
-      .nav {
-        li {
-          a {
-            color: $gray-dark;
+      .nav li a {
+        color: $gray-dark;
 
-            &:hover,
-            &:focus {
-              color: $theme-primary;
-            }
-          }
+        &:hover,
+        &:focus {
+          color: $theme-primary;
         }
       }
     }
@@ -664,7 +669,7 @@ body {
 aside {
   section {
     border-top: 1px solid $gray-lighter;
-    padding: 10px 0;
+    padding: 15px 0;
     text-align: center;
 
     &:first-child {

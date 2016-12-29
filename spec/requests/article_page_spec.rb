@@ -39,7 +39,7 @@ describe "Article Page" do
       before { visit root_path }
       
       it "should delete a article" do
-        expect{ click_link "delete" }.to change(Article, :count).by(-1)
+        expect{ click_link "Delete" }.to change(Article, :count).by(-1)
       end
     end
   end

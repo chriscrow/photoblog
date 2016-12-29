@@ -1,6 +1,6 @@
 <% if @feed_items.any? %>
-    <ol class="all_articles" id="content">
-        <%= render partial: 'shared/feed_item', collection: @feed_items %>
+    <ol class="article-list" id="content">
+        <%= render @feed_items %>
     </ol>
     <%= will_paginate @feed_items, :params => {:anchor => "content"}%>
 <% end %>

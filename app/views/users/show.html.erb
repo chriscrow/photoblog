@@ -1,4 +1,10 @@
 <% provide(:title, @user.nickname) %>
+<% provide(:info_bg, "/assets/about-bg.jpg") %>
+<% content_for :info_header do %>
+    <div class="site-heading">
+    </div>
+<% end %>
+
 <div class="row">
     <aside class="col-md-2">
         <section class="user-info">
@@ -8,11 +14,16 @@
             <%= render 'shared/stats' %>
         </section>
         <section>
-            <%= link_to "Post", new_article_path, class: "btn btn-primary" %>
+            <% if signed_in? %>
+                <% if current_user?(@user) %>
+                    <%= link_to "Post", new_article_path, class: "btn btn-primary" %>
+                <% else %>
+                    <%= render 'follow_form' %>
+                <% end %>
+            <% end %>
         </section>
     </aside>
     <div class="col-md-10">
-        <%= render 'follow_form' if signed_in? %>
         <% if @user.articles.any? %>
             <h3>Articles (<%= @user.articles.count %>)</h3>
             <ol class="article-list">
