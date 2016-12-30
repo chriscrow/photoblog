@@ -3,6 +3,7 @@
 
 $gray-medium-light: #eaeaea;
 $theme-primary: #0085a1;
+$theme-primary-light: lighten($theme-primary, 10%);
 $page-font-color: #fafafa;
 $white: #fff;
 $black: #000;
@@ -67,7 +68,7 @@ h6 {
 }
 
 a {
-  color: $gray-dark;
+  color: $theme-primary-light;
 
   &:hover,
   &:focus {
@@ -417,10 +418,28 @@ hr.small {
     font-size: 30px;
   }
 
-  h2 {
+  h2 { //"add comment" title
     color: $black;
     font-size: 18px;
     margin-bottom: 30px;
+  }
+
+  li {
+    margin-bottom: 20px;
+  }
+
+  .comment-name {
+    color: $theme-primary;
+  }
+
+  .comment-msg {
+    font-size: 18px;
+    margin: 5px 0;
+  }
+
+  .comment-del {
+    font-size: 12px;
+    text-align: right;
   }
 }
 
@@ -566,8 +585,9 @@ form .row:first-child .floating-label-form-group {
   }
 }
 
-textarea.form-control {
-    //border-radius: 0;
+form input[type="submit"] {
+  width: 100%;
+  margin-top: 12px;
 }
 
 // Pager Styling

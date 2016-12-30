@@ -11,7 +11,10 @@
 var editor;
 
 var ready = function() {
-    if($('.articles.edit').length != 0 || $('.articles.new').length != 0 || $('.articles.create').length != 0) {
+    if( $('.articles.edit').length != 0 ||
+        $('.articles.new').length != 0 ||
+        $('.articles.create').length != 0 ||
+        $('.articles.update').length != 0) {
         editor = editormd('editormd',{
             path: 'https://pandao.github.io/editor.md/lib/',
             height: 640,

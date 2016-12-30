@@ -3,8 +3,9 @@
     <span><div class="count"><%= @article.comments.length %></div> Comments</span>
     <% if @article.comments.any? %>
         <hr/>
-
-        <%= render @article.comments %>
+        <ol>
+            <%= render @article.comments %>
+        </ol>
     <% end %>
     
     <hr>
