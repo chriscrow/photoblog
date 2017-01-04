@@ -50,3 +50,5 @@ exclude_paths:
 - app/assets/javascripts/editormd
 - app/assets/stylesheets/editormd
 - app/assets/stylesheets/editormd.scss
+- app/assets/stylesheets/application.scss
+- app/assets/stylesheets/font-awesome.scss
