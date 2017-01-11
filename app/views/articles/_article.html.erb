@@ -3,18 +3,24 @@
     <div class="text-center subtitle">
         <span><%= article.created_at.to_date.to_formatted_s :long_ordinal %></span> <span>118 views</span>
     </div>
-    <div class="row">
-        <div class="col-md-8 main-image">
-            <p>
-                some img
-            </p>
+    <% if article.images.length >= 1 %>
+        <div class="row">
+            <div class="col-md-8 main-image">
+                <p>
+                    <%= image_tag article.images[0] %>
+                </p>
+            </div>
+            <div class="col-md-4">
+                <div class="markdown-body editormd-html-preview">
+                    <%= markdown(article.content, remove_img: 1) %>
+                </div>
+            </div>
         </div>
-        <div class="col-md-4">
-          <div class="markdown-body editormd-html-preview">
+    <% else %>
+        <div class="markdown-body editormd-html-preview">
             <%= markdown(article.content) %>
-          </div>
         </div>
-    </div>
+    <% end %>
     <div class="text-right">
         <small class="updated-time">Last edit: <%= article.updated_at.strftime "%b %d, %Y" %></small>
         <%= link_to 'Edit', edit_article_path(article) , class: 'btn btn-default'%>

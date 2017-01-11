@@ -1,10 +1,16 @@
 module ArticlesHelper
-  def markdown(text)
+  def markdown(text, options={remove_img:0})
     markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML,
       no_intra_emphasis: true, 
       fenced_code_blocks: true,   
       disable_indented_code_blocks: true)
-    return markdown.render(text).html_safe
+    html = markdown.render(text)
+    if options[:remove_img] > 0
+      options[:remove_img].times do
+        html.sub!(/<img\s+.*src=\"([^\"]*)\"\s+.*>/i, "")
+      end
+    end
+    return html.html_safe
   end
   
   def wrap(content)

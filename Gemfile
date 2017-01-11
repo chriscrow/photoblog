@@ -1,4 +1,4 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -42,7 +42,7 @@ gem 'redcarpet'
 gem 'bootstrap-sass', '3.3.6'
 
 # password
-gem 'bcrypt-ruby'
+gem 'bcrypt'
 
 # create fake user
 gem 'faker'

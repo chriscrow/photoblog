@@ -58,4 +58,15 @@ describe "Article Page" do
       end
     end
   end
+
+  describe "article showing" do
+    before do
+      FactoryGirl.create(:article, user:user, content:"![](http://somesite.com/foo.jpg)")
+      visit articles_path
+      #save_and_open_page
+    end
+
+    it { should have_xpath("//img[@src='http://somesite.com/foo.jpg']", count: 1) }
+    #it { should have_selector("image", src: "http://somesite.com/foo.jpg", count: 1) }
+  end
 end

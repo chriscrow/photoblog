@@ -11,10 +11,10 @@
 var editor;
 
 var ready = function() {
-    if( $('.articles.edit').length != 0 ||
-        $('.articles.new').length != 0 ||
-        $('.articles.create').length != 0 ||
-        $('.articles.update').length != 0) {
+    if( $('.articles.edit').length !== 0 ||
+        $('.articles.new').length !== 0 ||
+        $('.articles.create').length !== 0 ||
+        $('.articles.update').length !== 0) {
         editor = editormd('editormd',{
             path: 'https://pandao.github.io/editor.md/lib/',
             height: 640,
@@ -27,7 +27,7 @@ var ready = function() {
         editormd.markdownToHTML("editormd-preview", {
             htmlDecode      : "style,script,iframe",  // you can filter tags decode
             emoji           : true,
-            taskList        : true,
+            taskList        : true
             // tex             : false,  // 数学公式，默认不解析
             // flowChart       : false,  // 流程图，默认不解析
             // sequenceDiagram : false,  // 序列图，默认不解析
