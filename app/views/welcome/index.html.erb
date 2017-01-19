@@ -1,5 +1,5 @@
 <% if signed_in? %>
-    <% provide(:info_bg, "/assets/about-bg.jpg") %>
+    <% provide(:info_bg, asset_path("/assets/about-bg.jpg")) %>
     <% content_for :info_header do %>
         <div class="site-heading">
         </div>
@@ -21,7 +21,7 @@
         </div>
     </div>
 <% else %>
-    <% provide(:info_bg, "/assets/home-bg.jpg") %>
+    <% provide(:info_bg, asset_path("/assets/home-bg.jpg")) %>
     <% content_for :info_header do %>
         <div class="site-heading">
             <h1>Photo Blog</h1>
