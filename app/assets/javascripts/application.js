@@ -11,11 +11,10 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery.turbolinks
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
-//remove require_tree .
+//= require_tree .
 
 // Floating label headings for the contact form
 $(function() {
@@ -57,3 +56,5 @@ jQuery(document).ready(function($) {
             });
     }
 });
+
+//$.turbo.use('turbolinks:load', 'turbolinks:request-start')

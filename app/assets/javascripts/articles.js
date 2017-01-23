@@ -45,5 +45,6 @@ var ready = function() {
 };
 
 // this two supposed not work at same time
-$(document).ready(ready);
+//$(document).ready(ready);
 //$(document).on('page:load', ready);  //just for turbolink
+$(document).on('turbolinks:load', ready);

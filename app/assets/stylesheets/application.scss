@@ -10,12 +10,9 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *remove require_tree .
- * require_self
- * require custom
- * require font-awesome
- */
 
- @import 'bourbon';
- @import 'custom';
- @import 'font-awesome';
+ *= require_self
+ *= require font-awesome
+ *= require_tree .
+ *= require custom
+ */
