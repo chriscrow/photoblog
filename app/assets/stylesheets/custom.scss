@@ -103,7 +103,7 @@ blockquote {
     }
   }
 
-  .nav a {
+  .nav li a {
     font-size: 12px;
     font-weight: 800;
     letter-spacing: 1px;
@@ -124,7 +124,7 @@ blockquote {
       }
     }
 
-    .nav a {
+    .nav li a {
       color: $white;
       padding: 20px;
 
@@ -134,7 +134,7 @@ blockquote {
       }
     }
 
-    .dropdown-menu a {
+    .dropdown-menu li a {
       color: $gray;
 
       &:hover,
@@ -168,7 +168,7 @@ blockquote {
         }
       }
 
-      .nav a {
+      .nav li a {
         color: $gray-dark;
 
         &:hover,
@@ -375,6 +375,10 @@ blockquote {
 
   ul {
     list-style: disc;
+  }
+
+  .main-image img {
+    width: 100%;
   }
 }
 
